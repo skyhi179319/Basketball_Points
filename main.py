@@ -63,7 +63,6 @@ class TableList:
         return list
  
 class Table:
-      
     def __init__(self,root):
         # code for creating table
         fontColor = "blue"
