@@ -80,14 +80,6 @@ class GUI:
     total_rows = len(lst)
     total_columns = len(lst[0])
     def __init__(self):
-        # take the data
-        
-   
-        # find total number of rows and
-        # columns in list
-        
-   
-        # create root window
         root = Tk()
         root.title("Points By Starting Players")
         t = Table(root)
