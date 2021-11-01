@@ -40,23 +40,23 @@ class functions:
         return round(points, 3)
 
 class TableList:
+    PG = Player("Skyler","PG",15,20,18)
+    SG = Player("Zane","SG",10,15,12)
+    C = Player("David","C",15,17,13)
+    PF = Player("Carson","PF",15,13,17)
+    SF = Player("Ethan","SF",17,15,17)
     def returnList():
-        PG = Player("Skyler","PG",15,20,18)
-        SG = Player("Zane","SG",10,15,12)
-        C = Player("David","C",15,17,13)
-        PF = Player("Carson","PF",15,13,17)
-        SF = Player("Ethan","SF",17,15,17)
-        Game1 = functions.returnGame1Points(PG.returnGame1(),SG.returnGame1(),C.returnGame1(),PF.returnGame1(),SF.returnGame1())
-        Game2 = functions.returnGame2Points(PG.returnGame2(),SG.returnGame2(),C.returnGame2(),PF.returnGame2(),SF.returnGame2())
-        Game3 = functions.returnGame3Points(PG.returnGame3(),SG.returnGame3(),C.returnGame3(),PF.returnGame3(),SF.returnGame3())
-        Total = functions.returnAllPoints(PG.returnPoints(),SG.returnPoints(),C.returnPoints(),PF.returnPoints(),SF.returnPoints())
+        Game1 = functions.returnGame1Points(TableList.PG.returnGame1(),TableList.SG.returnGame1(),TableList.C.returnGame1(),TableList.PF.returnGame1(),TableList.SF.returnGame1())
+        Game2 = functions.returnGame2Points(TableList.PG.returnGame2(),TableList.SG.returnGame2(),TableList.C.returnGame2(),TableList.PF.returnGame2(),TableList.SF.returnGame2())
+        Game3 = functions.returnGame3Points(TableList.PG.returnGame3(),TableList.SG.returnGame3(),TableList.C.returnGame3(),TableList.PF.returnGame3(),TableList.SF.returnGame3())
+        Total = functions.returnAllPoints(TableList.PG.returnPoints(),TableList.SG.returnPoints(),TableList.C.returnPoints(),TableList.PF.returnPoints(),TableList.SF.returnPoints())
         AVG = functions.returnAvg(Total)
         list = [("Name:","POS:","Game 1:","Game 2:","Game 3:","Total Points:"),
-                (PG.returnName(),PG.returnPos(),PG.returnGame1(),PG.returnGame2(),PG.returnGame3(),PG.returnPoints()),
-                (SG.returnName(),SG.returnPos(),SG.returnGame1(),SG.returnGame2(),SG.returnGame3(),SG.returnPoints()),
-                (C.returnName(),C.returnPos(),C.returnGame1(),C.returnGame2(),C.returnGame3(),C.returnPoints()),
-                (PF.returnName(),PF.returnPos(),PF.returnGame1(),PF.returnGame2(),PF.returnGame3(),PF.returnPoints()),
-                (SF.returnName(),SF.returnPos(),SF.returnGame1(),SF.returnGame2(),SF.returnGame3(),SF.returnPoints()),
+                (TableList.PG.returnName(),TableList.PG.returnPos(),TableList.PG.returnGame1(),TableList.PG.returnGame2(),TableList.PG.returnGame3(),TableList.PG.returnPoints()),
+                (TableList.SG.returnName(),TableList.SG.returnPos(),TableList.SG.returnGame1(),TableList.SG.returnGame2(),TableList.SG.returnGame3(),TableList.SG.returnPoints()),
+                (TableList.C.returnName(),TableList.C.returnPos(),TableList.C.returnGame1(),TableList.C.returnGame2(),TableList.C.returnGame3(),TableList.C.returnPoints()),
+                (TableList.PF.returnName(),TableList.PF.returnPos(),TableList.PF.returnGame1(),TableList.PF.returnGame2(),TableList.PF.returnGame3(),TableList.PF.returnPoints()),
+                (TableList.SF.returnName(),TableList.SF.returnPos(),TableList.SF.returnGame1(),TableList.SF.returnGame2(),TableList.SF.returnGame3(),TableList.SF.returnPoints()),
                 ("","Totals:",Game1,Game2,Game3,Total),
                 ("","AVG:","","","",AVG),
                 ]
@@ -66,25 +66,31 @@ class Table:
     def __init__(self,root):
         # code for creating table
         fontColor = "blue"
-        for i in range(total_rows):
-            for j in range(total_columns):
+        for i in range(GUI.total_rows):
+            for j in range(GUI.total_columns):
                   
                 self.e = Entry(root, width=15, fg=fontColor,
                                font=('Arial',16,'bold'))
                   
                 self.e.grid(row=i, column=j)
-                self.e.insert(END, lst[i][j])
+                self.e.insert(END, GUI.lst[i][j])
 
-# take the data
-lst = TableList.returnList()
+class GUI:
+    lst = TableList.returnList()
+    total_rows = len(lst)
+    total_columns = len(lst[0])
+    def __init__(self):
+        # take the data
+        
    
-# find total number of rows and
-# columns in list
-total_rows = len(lst)
-total_columns = len(lst[0])
+        # find total number of rows and
+        # columns in list
+        
    
-# create root window
-root = Tk()
-root.title("Points By Starting Players")
-t = Table(root)
-root.mainloop()
+        # create root window
+        root = Tk()
+        root.title("Points By Starting Players")
+        t = Table(root)
+        root.mainloop()
+
+GUI()
