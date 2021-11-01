@@ -144,6 +144,7 @@ class MainGUI:
         Options = Menu(menubar, tearoff=0)
         Options.add_command(label="Points", command=PointsGUI)
         Options.add_command(label="Steals", command=StealsGUI)
+        Options.add_command(label="Exit", command=root.quit)
         menubar.add_cascade(label="Options", menu=Options)
         root.config(menu=menubar)
         root.mainloop()
