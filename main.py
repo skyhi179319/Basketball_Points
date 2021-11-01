@@ -39,50 +39,60 @@ class functions:
         points = totalPoints / 3
         return round(points, 3)
 
-class TableList:
+class PointsTableList:
     PG = Player("Skyler","PG",15,20,18)
     SG = Player("Zane","SG",10,15,12)
     C = Player("David","C",15,17,13)
     PF = Player("Carson","PF",15,13,17)
     SF = Player("Ethan","SF",17,15,17)
     def returnList():
-        Game1 = functions.returnGame1Points(TableList.PG.returnGame1(),TableList.SG.returnGame1(),TableList.C.returnGame1(),TableList.PF.returnGame1(),TableList.SF.returnGame1())
-        Game2 = functions.returnGame2Points(TableList.PG.returnGame2(),TableList.SG.returnGame2(),TableList.C.returnGame2(),TableList.PF.returnGame2(),TableList.SF.returnGame2())
-        Game3 = functions.returnGame3Points(TableList.PG.returnGame3(),TableList.SG.returnGame3(),TableList.C.returnGame3(),TableList.PF.returnGame3(),TableList.SF.returnGame3())
-        Total = functions.returnAllPoints(TableList.PG.returnPoints(),TableList.SG.returnPoints(),TableList.C.returnPoints(),TableList.PF.returnPoints(),TableList.SF.returnPoints())
+        Game1 = functions.returnGame1Points(PointsTableList.PG.returnGame1(),PointsTableList.SG.returnGame1(),PointsTableList.C.returnGame1(),PointsTableList.PF.returnGame1(),PointsTableList.SF.returnGame1())
+        Game2 = functions.returnGame2Points(PointsTableList.PG.returnGame2(),PointsTableList.SG.returnGame2(),PointsTableList.C.returnGame2(),PointsTableList.PF.returnGame2(),PointsTableList.SF.returnGame2())
+        Game3 = functions.returnGame3Points(PointsTableList.PG.returnGame3(),PointsTableList.SG.returnGame3(),PointsTableList.C.returnGame3(),PointsTableList.PF.returnGame3(),PointsTableList.SF.returnGame3())
+        Total = functions.returnAllPoints(PointsTableList.PG.returnPoints(),PointsTableList.SG.returnPoints(),PointsTableList.C.returnPoints(),PointsTableList.PF.returnPoints(),PointsTableList.SF.returnPoints())
         AVG = functions.returnAvg(Total)
         list = [("Name:","POS:","Game 1:","Game 2:","Game 3:","Total Points:"),
-                (TableList.PG.returnName(),TableList.PG.returnPos(),TableList.PG.returnGame1(),TableList.PG.returnGame2(),TableList.PG.returnGame3(),TableList.PG.returnPoints()),
-                (TableList.SG.returnName(),TableList.SG.returnPos(),TableList.SG.returnGame1(),TableList.SG.returnGame2(),TableList.SG.returnGame3(),TableList.SG.returnPoints()),
-                (TableList.C.returnName(),TableList.C.returnPos(),TableList.C.returnGame1(),TableList.C.returnGame2(),TableList.C.returnGame3(),TableList.C.returnPoints()),
-                (TableList.PF.returnName(),TableList.PF.returnPos(),TableList.PF.returnGame1(),TableList.PF.returnGame2(),TableList.PF.returnGame3(),TableList.PF.returnPoints()),
-                (TableList.SF.returnName(),TableList.SF.returnPos(),TableList.SF.returnGame1(),TableList.SF.returnGame2(),TableList.SF.returnGame3(),TableList.SF.returnPoints()),
+                (PointsTableList.PG.returnName(),PointsTableList.PG.returnPos(),PointsTableList.PG.returnGame1(),PointsTableList.PG.returnGame2(),PointsTableList.PG.returnGame3(),PointsTableList.PG.returnPoints()),
+                (PointsTableList.SG.returnName(),PointsTableList.SG.returnPos(),PointsTableList.SG.returnGame1(),PointsTableList.SG.returnGame2(),PointsTableList.SG.returnGame3(),PointsTableList.SG.returnPoints()),
+                (PointsTableList.C.returnName(),PointsTableList.C.returnPos(),PointsTableList.C.returnGame1(),PointsTableList.C.returnGame2(),PointsTableList.C.returnGame3(),PointsTableList.C.returnPoints()),
+                (PointsTableList.PF.returnName(),PointsTableList.PF.returnPos(),PointsTableList.PF.returnGame1(),PointsTableList.PF.returnGame2(),PointsTableList.PF.returnGame3(),PointsTableList.PF.returnPoints()),
+                (PointsTableList.SF.returnName(),PointsTableList.SF.returnPos(),PointsTableList.SF.returnGame1(),PointsTableList.SF.returnGame2(),PointsTableList.SF.returnGame3(),PointsTableList.SF.returnPoints()),
                 ("","Totals:",Game1,Game2,Game3,Total),
                 ("","AVG:","","","",AVG),
                 ]
         return list
  
-class Table:
+class PointsTable:
     def __init__(self,root):
         # code for creating table
         fontColor = "blue"
-        for i in range(GUI.total_rows):
-            for j in range(GUI.total_columns):
+        for i in range(PointsGUI.total_rows):
+            for j in range(PointsGUI.total_columns):
                   
                 self.e = Entry(root, width=15, fg=fontColor,
                                font=('Arial',16,'bold'))
                   
                 self.e.grid(row=i, column=j)
-                self.e.insert(END, GUI.lst[i][j])
+                self.e.insert(END, PointsGUI.lst[i][j])
 
-class GUI:
-    lst = TableList.returnList()
+class PointsGUI:
+    lst = PointsTableList.returnList()
     total_rows = len(lst)
     total_columns = len(lst[0])
     def __init__(self):
         root = Tk()
         root.title("Points By Starting Players")
-        t = Table(root)
+        t = PointsTable(root)
         root.mainloop()
-
-GUI()
+class MainGUI:
+    def __init__(self):
+        root = Tk()
+        root.title("Options")
+        root.geometry("500x200")
+        menubar = Menu(root)
+        Options = Menu(menubar, tearoff=0)
+        Options.add_command(label="Points", command=PointsGUI)
+        menubar.add_cascade(label="Options", menu=Options)
+        root.config(menu=menubar)
+        root.mainloop()
+MainGUI()
