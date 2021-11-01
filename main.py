@@ -1,6 +1,7 @@
 from tkinter import *
 import math
   
+# Global FUnctions
 class Player:
     def __init__(self, name, pos, game1,game2,game3):
         self.name = name
@@ -39,6 +40,54 @@ class functions:
         points = totalPoints / 3
         return round(points, 3)
 
+# Steals
+class StealsTableList:
+    PG = Player("Skyler","PG",3,2,3)
+    SG = Player("Zane","SG",1,0,2)
+    C = Player("David","C",0,1,2)
+    PF = Player("Carson","PF",1,1,1)
+    SF = Player("Ethan","SF",1,1,2)
+    def returnList():
+        Game1 = functions.returnGame1Points(StealsTableList.PG.returnGame1(),StealsTableList.SG.returnGame1(),StealsTableList.C.returnGame1(),StealsTableList.PF.returnGame1(),StealsTableList.SF.returnGame1())
+        Game2 = functions.returnGame2Points(StealsTableList.PG.returnGame2(),StealsTableList.SG.returnGame2(),StealsTableList.C.returnGame2(),StealsTableList.PF.returnGame2(),StealsTableList.SF.returnGame2())
+        Game3 = functions.returnGame3Points(StealsTableList.PG.returnGame3(),StealsTableList.SG.returnGame3(),StealsTableList.C.returnGame3(),StealsTableList.PF.returnGame3(),StealsTableList.SF.returnGame3())
+        Total = functions.returnAllPoints(StealsTableList.PG.returnPoints(),StealsTableList.SG.returnPoints(),StealsTableList.C.returnPoints(),StealsTableList.PF.returnPoints(),StealsTableList.SF.returnPoints())
+        AVG = functions.returnAvg(Total)
+        list = [("Name:","POS:","Game 1:","Game 2:","Game 3:","Total Steals:"),
+                (StealsTableList.PG.returnName(),StealsTableList.PG.returnPos(),StealsTableList.PG.returnGame1(),StealsTableList.PG.returnGame2(),StealsTableList.PG.returnGame3(),StealsTableList.PG.returnPoints()),
+                (StealsTableList.SG.returnName(),StealsTableList.SG.returnPos(),StealsTableList.SG.returnGame1(),StealsTableList.SG.returnGame2(),StealsTableList.SG.returnGame3(),StealsTableList.SG.returnPoints()),
+                (StealsTableList.C.returnName(),StealsTableList.C.returnPos(),StealsTableList.C.returnGame1(),StealsTableList.C.returnGame2(),StealsTableList.C.returnGame3(),StealsTableList.C.returnPoints()),
+                (StealsTableList.PF.returnName(),StealsTableList.PF.returnPos(),StealsTableList.PF.returnGame1(),StealsTableList.PF.returnGame2(),StealsTableList.PF.returnGame3(),StealsTableList.PF.returnPoints()),
+                (StealsTableList.SF.returnName(),StealsTableList.SF.returnPos(),StealsTableList.SF.returnGame1(),StealsTableList.SF.returnGame2(),StealsTableList.SF.returnGame3(),StealsTableList.SF.returnPoints()),
+                ("","Totals:",Game1,Game2,Game3,Total),
+                ("","AVG:","","","",AVG),
+                ]
+        return list
+ 
+class StealTable:
+    def __init__(self,root):
+        # code for creating table
+        fontColor = "blue"
+        for i in range(StealsGUI.total_rows):
+            for j in range(StealsGUI.total_columns):
+                  
+                self.e = Entry(root, width=15, fg=fontColor,
+                               font=('Arial',16,'bold'))
+                  
+                self.e.grid(row=i, column=j)
+                self.e.insert(END, StealsGUI.lst[i][j])
+
+class StealsGUI:
+    lst = StealsTableList.returnList()
+    total_rows = len(lst)
+    total_columns = len(lst[0])
+    def __init__(self):
+        root = Tk()
+        root.title("Steals By Starting Players")
+        t = StealTable(root)
+        root.mainloop()
+
+# Points
 class PointsTableList:
     PG = Player("Skyler","PG",15,20,18)
     SG = Player("Zane","SG",10,15,12)
@@ -84,6 +133,8 @@ class PointsGUI:
         root.title("Points By Starting Players")
         t = PointsTable(root)
         root.mainloop()
+
+# Main GUI
 class MainGUI:
     def __init__(self):
         root = Tk()
@@ -92,6 +143,7 @@ class MainGUI:
         menubar = Menu(root)
         Options = Menu(menubar, tearoff=0)
         Options.add_command(label="Points", command=PointsGUI)
+        Options.add_command(label="Steals", command=StealsGUI)
         menubar.add_cascade(label="Options", menu=Options)
         root.config(menu=menubar)
         root.mainloop()
