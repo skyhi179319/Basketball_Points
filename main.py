@@ -21,6 +21,7 @@ class Player:
     def returnPoints(self):
         points = self.game_1 + self.game_2 + self.game_3
         return points
+
 class functions:
     def returnGame1Points(Player1,Player2,Player3,Player4,Player5):
         points = Player1 + Player2 + Player3 + Player4 + Player5
@@ -37,6 +38,7 @@ class functions:
     def returnAvg(totalPoints):
         points = totalPoints / 3
         return round(points, 3)
+
 class TableList:
     def returnList():
         PG = Player("Skyler","PG",15,20,18)
@@ -58,21 +60,22 @@ class TableList:
                 ("","Totals:",Game1,Game2,Game3,Total),
                 ("","AVG:","","","",AVG),
                 ]
-        return list  
+        return list
+ 
 class Table:
       
     def __init__(self,root):
-          
         # code for creating table
+        fontColor = "blue"
         for i in range(total_rows):
             for j in range(total_columns):
                   
-                self.e = Entry(root, width=15, fg='blue',
+                self.e = Entry(root, width=15, fg=fontColor,
                                font=('Arial',16,'bold'))
                   
                 self.e.grid(row=i, column=j)
                 self.e.insert(END, lst[i][j])
-  
+
 # take the data
 lst = TableList.returnList()
    
