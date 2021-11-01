@@ -49,7 +49,8 @@ class TableList:
         Game3 = functions.returnGame3Points(PG.returnGame3(),SG.returnGame3(),C.returnGame3(),PF.returnGame3(),SF.returnGame3())
         Total = functions.returnAllPoints(PG.returnPoints(),SG.returnPoints(),C.returnPoints(),PF.returnPoints(),SF.returnPoints())
         AVG = functions.returnAvg(Total)
-        list = [(PG.returnName(),PG.returnPos(),PG.returnGame1(),PG.returnGame2(),PG.returnGame3(),PG.returnPoints()),
+        list = [("Name:","POS:","Game 1:","Game 2:","Game 3:","Total Points:"),
+                (PG.returnName(),PG.returnPos(),PG.returnGame1(),PG.returnGame2(),PG.returnGame3(),PG.returnPoints()),
                 (SG.returnName(),SG.returnPos(),SG.returnGame1(),SG.returnGame2(),SG.returnGame3(),SG.returnPoints()),
                 (C.returnName(),C.returnPos(),C.returnGame1(),C.returnGame2(),C.returnGame3(),C.returnPoints()),
                 (PF.returnName(),PF.returnPos(),PF.returnGame1(),PF.returnGame2(),PF.returnGame3(),PF.returnPoints()),
