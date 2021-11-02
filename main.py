@@ -40,98 +40,145 @@ class functions:
         points = totalPoints / 3
         return round(points, 3)
 
-# Steals
-class StealsTableList:
-    PG = Player("Skyler","PG",3,2,3)
-    SG = Player("Zane","SG",1,0,2)
-    C = Player("David","C",0,1,2)
-    PF = Player("Carson","PF",1,1,1)
-    SF = Player("Ethan","SF",1,1,2)
-    def returnList():
-        Game1 = functions.returnGame1Points(StealsTableList.PG.returnGame1(),StealsTableList.SG.returnGame1(),StealsTableList.C.returnGame1(),StealsTableList.PF.returnGame1(),StealsTableList.SF.returnGame1())
-        Game2 = functions.returnGame2Points(StealsTableList.PG.returnGame2(),StealsTableList.SG.returnGame2(),StealsTableList.C.returnGame2(),StealsTableList.PF.returnGame2(),StealsTableList.SF.returnGame2())
-        Game3 = functions.returnGame3Points(StealsTableList.PG.returnGame3(),StealsTableList.SG.returnGame3(),StealsTableList.C.returnGame3(),StealsTableList.PF.returnGame3(),StealsTableList.SF.returnGame3())
-        Total = functions.returnAllPoints(StealsTableList.PG.returnPoints(),StealsTableList.SG.returnPoints(),StealsTableList.C.returnPoints(),StealsTableList.PF.returnPoints(),StealsTableList.SF.returnPoints())
-        AVG = functions.returnAvg(Total)
-        list = [("Name:","POS:","Game 1:","Game 2:","Game 3:","Total Steals:"),
-                (StealsTableList.PG.returnName(),StealsTableList.PG.returnPos(),StealsTableList.PG.returnGame1(),StealsTableList.PG.returnGame2(),StealsTableList.PG.returnGame3(),StealsTableList.PG.returnPoints()),
-                (StealsTableList.SG.returnName(),StealsTableList.SG.returnPos(),StealsTableList.SG.returnGame1(),StealsTableList.SG.returnGame2(),StealsTableList.SG.returnGame3(),StealsTableList.SG.returnPoints()),
-                (StealsTableList.C.returnName(),StealsTableList.C.returnPos(),StealsTableList.C.returnGame1(),StealsTableList.C.returnGame2(),StealsTableList.C.returnGame3(),StealsTableList.C.returnPoints()),
-                (StealsTableList.PF.returnName(),StealsTableList.PF.returnPos(),StealsTableList.PF.returnGame1(),StealsTableList.PF.returnGame2(),StealsTableList.PF.returnGame3(),StealsTableList.PF.returnPoints()),
-                (StealsTableList.SF.returnName(),StealsTableList.SF.returnPos(),StealsTableList.SF.returnGame1(),StealsTableList.SF.returnGame2(),StealsTableList.SF.returnGame3(),StealsTableList.SF.returnPoints()),
-                ("","Totals:",Game1,Game2,Game3,Total),
-                ("","AVG:","","","",AVG),
-                ]
-        return list
- 
-class StealTable:
-    def __init__(self,root):
-        # code for creating table
-        fontColor = "blue"
-        for i in range(StealsGUI.total_rows):
-            for j in range(StealsGUI.total_columns):
-                  
-                self.e = Entry(root, width=15, fg=fontColor,
-                               font=('Arial',16,'bold'))
-                  
-                self.e.grid(row=i, column=j)
-                self.e.insert(END, StealsGUI.lst[i][j])
-
-class StealsGUI:
-    lst = StealsTableList.returnList()
-    total_rows = len(lst)
-    total_columns = len(lst[0])
-    def __init__(self):
-        root = Tk()
-        root.title("Steals By Starting Players")
-        t = StealTable(root)
-        root.mainloop()
-
 # Points
-class PointsTableList:
+class pointsTableList:
     PG = Player("Skyler","PG",15,20,18)
     SG = Player("Zane","SG",10,15,12)
     C = Player("David","C",15,17,13)
     PF = Player("Carson","PF",15,13,17)
     SF = Player("Ethan","SF",17,15,17)
     def returnList():
-        Game1 = functions.returnGame1Points(PointsTableList.PG.returnGame1(),PointsTableList.SG.returnGame1(),PointsTableList.C.returnGame1(),PointsTableList.PF.returnGame1(),PointsTableList.SF.returnGame1())
-        Game2 = functions.returnGame2Points(PointsTableList.PG.returnGame2(),PointsTableList.SG.returnGame2(),PointsTableList.C.returnGame2(),PointsTableList.PF.returnGame2(),PointsTableList.SF.returnGame2())
-        Game3 = functions.returnGame3Points(PointsTableList.PG.returnGame3(),PointsTableList.SG.returnGame3(),PointsTableList.C.returnGame3(),PointsTableList.PF.returnGame3(),PointsTableList.SF.returnGame3())
-        Total = functions.returnAllPoints(PointsTableList.PG.returnPoints(),PointsTableList.SG.returnPoints(),PointsTableList.C.returnPoints(),PointsTableList.PF.returnPoints(),PointsTableList.SF.returnPoints())
+        Game1 = functions.returnGame1Points(pointsTableList.PG.returnGame1(),pointsTableList.SG.returnGame1(),pointsTableList.C.returnGame1(),pointsTableList.PF.returnGame1(),pointsTableList.SF.returnGame1())
+        Game2 = functions.returnGame2Points(pointsTableList.PG.returnGame2(),pointsTableList.SG.returnGame2(),pointsTableList.C.returnGame2(),pointsTableList.PF.returnGame2(),pointsTableList.SF.returnGame2())
+        Game3 = functions.returnGame3Points(pointsTableList.PG.returnGame3(),pointsTableList.SG.returnGame3(),pointsTableList.C.returnGame3(),pointsTableList.PF.returnGame3(),pointsTableList.SF.returnGame3())
+        Total = functions.returnAllPoints(pointsTableList.PG.returnPoints(),pointsTableList.SG.returnPoints(),pointsTableList.C.returnPoints(),pointsTableList.PF.returnPoints(),pointsTableList.SF.returnPoints())
         AVG = functions.returnAvg(Total)
         list = [("Name:","POS:","Game 1:","Game 2:","Game 3:","Total Points:"),
-                (PointsTableList.PG.returnName(),PointsTableList.PG.returnPos(),PointsTableList.PG.returnGame1(),PointsTableList.PG.returnGame2(),PointsTableList.PG.returnGame3(),PointsTableList.PG.returnPoints()),
-                (PointsTableList.SG.returnName(),PointsTableList.SG.returnPos(),PointsTableList.SG.returnGame1(),PointsTableList.SG.returnGame2(),PointsTableList.SG.returnGame3(),PointsTableList.SG.returnPoints()),
-                (PointsTableList.C.returnName(),PointsTableList.C.returnPos(),PointsTableList.C.returnGame1(),PointsTableList.C.returnGame2(),PointsTableList.C.returnGame3(),PointsTableList.C.returnPoints()),
-                (PointsTableList.PF.returnName(),PointsTableList.PF.returnPos(),PointsTableList.PF.returnGame1(),PointsTableList.PF.returnGame2(),PointsTableList.PF.returnGame3(),PointsTableList.PF.returnPoints()),
-                (PointsTableList.SF.returnName(),PointsTableList.SF.returnPos(),PointsTableList.SF.returnGame1(),PointsTableList.SF.returnGame2(),PointsTableList.SF.returnGame3(),PointsTableList.SF.returnPoints()),
+                (pointsTableList.PG.returnName(),pointsTableList.PG.returnPos(),pointsTableList.PG.returnGame1(),pointsTableList.PG.returnGame2(),pointsTableList.PG.returnGame3(),pointsTableList.PG.returnPoints()),
+                (pointsTableList.SG.returnName(),pointsTableList.SG.returnPos(),pointsTableList.SG.returnGame1(),pointsTableList.SG.returnGame2(),pointsTableList.SG.returnGame3(),pointsTableList.SG.returnPoints()),
+                (pointsTableList.C.returnName(),pointsTableList.C.returnPos(),pointsTableList.C.returnGame1(),pointsTableList.C.returnGame2(),pointsTableList.C.returnGame3(),pointsTableList.C.returnPoints()),
+                (pointsTableList.PF.returnName(),pointsTableList.PF.returnPos(),pointsTableList.PF.returnGame1(),pointsTableList.PF.returnGame2(),pointsTableList.PF.returnGame3(),pointsTableList.PF.returnPoints()),
+                (pointsTableList.SF.returnName(),pointsTableList.SF.returnPos(),pointsTableList.SF.returnGame1(),pointsTableList.SF.returnGame2(),pointsTableList.SF.returnGame3(),pointsTableList.SF.returnPoints()),
                 ("","Totals:",Game1,Game2,Game3,Total),
                 ("","AVG:","","","",AVG),
                 ]
         return list
  
-class PointsTable:
+class pointsTable:
     def __init__(self,root):
         # code for creating table
         fontColor = "blue"
-        for i in range(PointsGUI.total_rows):
-            for j in range(PointsGUI.total_columns):
+        for i in range(pointsGUI.total_rows):
+            for j in range(pointsGUI.total_columns):
                   
                 self.e = Entry(root, width=15, fg=fontColor,
                                font=('Arial',16,'bold'))
                   
                 self.e.grid(row=i, column=j)
-                self.e.insert(END, PointsGUI.lst[i][j])
+                self.e.insert(END, pointsGUI.lst[i][j])
 
-class PointsGUI:
-    lst = PointsTableList.returnList()
+class pointsGUI:
+    lst = pointsTableList.returnList()
     total_rows = len(lst)
     total_columns = len(lst[0])
     def __init__(self):
         root = Tk()
         root.title("Points By Starting Players")
-        t = PointsTable(root)
+        t = pointsTable(root)
+        root.mainloop()
+
+# Steals
+class stealsTableList:
+    PG = Player("Skyler","PG",3,2,3)
+    SG = Player("Zane","SG",1,0,2)
+    C = Player("David","C",0,1,2)
+    PF = Player("Carson","PF",1,1,1)
+    SF = Player("Ethan","SF",1,1,2)
+    def returnList():
+        Game1 = functions.returnGame1Points(stealsTableList.PG.returnGame1(),stealsTableList.SG.returnGame1(),stealsTableList.C.returnGame1(),stealsTableList.PF.returnGame1(),stealsTableList.SF.returnGame1())
+        Game2 = functions.returnGame2Points(stealsTableList.PG.returnGame2(),stealsTableList.SG.returnGame2(),stealsTableList.C.returnGame2(),stealsTableList.PF.returnGame2(),stealsTableList.SF.returnGame2())
+        Game3 = functions.returnGame3Points(stealsTableList.PG.returnGame3(),stealsTableList.SG.returnGame3(),stealsTableList.C.returnGame3(),stealsTableList.PF.returnGame3(),stealsTableList.SF.returnGame3())
+        Total = functions.returnAllPoints(stealsTableList.PG.returnPoints(),stealsTableList.SG.returnPoints(),stealsTableList.C.returnPoints(),stealsTableList.PF.returnPoints(),stealsTableList.SF.returnPoints())
+        AVG = functions.returnAvg(Total)
+        list = [("Name:","POS:","Game 1:","Game 2:","Game 3:","Total Steals:"),
+                (stealsTableList.PG.returnName(),stealsTableList.PG.returnPos(),stealsTableList.PG.returnGame1(),stealsTableList.PG.returnGame2(),stealsTableList.PG.returnGame3(),stealsTableList.PG.returnPoints()),
+                (stealsTableList.SG.returnName(),stealsTableList.SG.returnPos(),stealsTableList.SG.returnGame1(),stealsTableList.SG.returnGame2(),stealsTableList.SG.returnGame3(),stealsTableList.SG.returnPoints()),
+                (stealsTableList.C.returnName(),stealsTableList.C.returnPos(),stealsTableList.C.returnGame1(),stealsTableList.C.returnGame2(),stealsTableList.C.returnGame3(),stealsTableList.C.returnPoints()),
+                (stealsTableList.PF.returnName(),stealsTableList.PF.returnPos(),stealsTableList.PF.returnGame1(),stealsTableList.PF.returnGame2(),stealsTableList.PF.returnGame3(),stealsTableList.PF.returnPoints()),
+                (stealsTableList.SF.returnName(),stealsTableList.SF.returnPos(),stealsTableList.SF.returnGame1(),stealsTableList.SF.returnGame2(),stealsTableList.SF.returnGame3(),stealsTableList.SF.returnPoints()),
+                ("","Totals:",Game1,Game2,Game3,Total),
+                ("","AVG:","","","",AVG),
+                ]
+        return list
+ 
+class stealsTable:
+    def __init__(self,root):
+        # code for creating table
+        fontColor = "blue"
+        for i in range(stealsGUI.total_rows):
+            for j in range(stealsGUI.total_columns):
+                  
+                self.e = Entry(root, width=15, fg=fontColor,
+                               font=('Arial',16,'bold'))
+                  
+                self.e.grid(row=i, column=j)
+                self.e.insert(END, stealsGUI.lst[i][j])
+
+class stealsGUI:
+    lst = stealsTableList.returnList()
+    total_rows = len(lst)
+    total_columns = len(lst[0])
+    def __init__(self):
+        root = Tk()
+        root.title("Steals By Starting Players")
+        t = stealsTable(root)
+        root.mainloop()
+
+# Rebounds
+class reboundsTableList:
+    PG = Player("Skyler","PG",6,7,7)
+    SG = Player("Zane","SG",6,7,8)
+    C = Player("David","C",5,6,7)
+    PF = Player("Carson","PF",8,6,8)
+    SF = Player("Ethan","SF",7,8,7)
+    def returnList():
+        Game1 = functions.returnGame1Points(reboundsTableList.PG.returnGame1(),reboundsTableList.SG.returnGame1(),reboundsTableList.C.returnGame1(),reboundsTableList.PF.returnGame1(),reboundsTableList.SF.returnGame1())
+        Game2 = functions.returnGame2Points(reboundsTableList.PG.returnGame2(),reboundsTableList.SG.returnGame2(),reboundsTableList.C.returnGame2(),reboundsTableList.PF.returnGame2(),reboundsTableList.SF.returnGame2())
+        Game3 = functions.returnGame3Points(reboundsTableList.PG.returnGame3(),reboundsTableList.SG.returnGame3(),reboundsTableList.C.returnGame3(),reboundsTableList.PF.returnGame3(),reboundsTableList.SF.returnGame3())
+        Total = functions.returnAllPoints(reboundsTableList.PG.returnPoints(),reboundsTableList.SG.returnPoints(),reboundsTableList.C.returnPoints(),reboundsTableList.PF.returnPoints(),reboundsTableList.SF.returnPoints())
+        AVG = functions.returnAvg(Total)
+        list = [("Name:","POS:","Game 1:","Game 2:","Game 3:","Total Rebounds:"),
+                (reboundsTableList.PG.returnName(),reboundsTableList.PG.returnPos(),reboundsTableList.PG.returnGame1(),reboundsTableList.PG.returnGame2(),reboundsTableList.PG.returnGame3(),reboundsTableList.PG.returnPoints()),
+                (reboundsTableList.SG.returnName(),reboundsTableList.SG.returnPos(),reboundsTableList.SG.returnGame1(),reboundsTableList.SG.returnGame2(),reboundsTableList.SG.returnGame3(),reboundsTableList.SG.returnPoints()),
+                (reboundsTableList.C.returnName(),reboundsTableList.C.returnPos(),reboundsTableList.C.returnGame1(),reboundsTableList.C.returnGame2(),reboundsTableList.C.returnGame3(),reboundsTableList.C.returnPoints()),
+                (reboundsTableList.PF.returnName(),reboundsTableList.PF.returnPos(),reboundsTableList.PF.returnGame1(),reboundsTableList.PF.returnGame2(),reboundsTableList.PF.returnGame3(),reboundsTableList.PF.returnPoints()),
+                (reboundsTableList.SF.returnName(),reboundsTableList.SF.returnPos(),reboundsTableList.SF.returnGame1(),reboundsTableList.SF.returnGame2(),reboundsTableList.SF.returnGame3(),reboundsTableList.SF.returnPoints()),
+                ("","Totals:",Game1,Game2,Game3,Total),
+                ("","AVG:","","","",AVG),
+                ]
+        return list
+ 
+class reboundsTable:
+    def __init__(self,root):
+        # code for creating table
+        fontColor = "blue"
+        for i in range(reboundsGUI.total_rows):
+            for j in range(reboundsGUI.total_columns):
+                  
+                self.e = Entry(root, width=15, fg=fontColor,
+                               font=('Arial',16,'bold'))
+                  
+                self.e.grid(row=i, column=j)
+                self.e.insert(END, reboundsGUI.lst[i][j])
+
+class reboundsGUI:
+    lst = reboundsTableList.returnList()
+    total_rows = len(lst)
+    total_columns = len(lst[0])
+    def __init__(self):
+        root = Tk()
+        root.title("Rebounds By Starting Players")
+        t = reboundsTable(root)
         root.mainloop()
 
 # Main GUI
@@ -142,8 +189,9 @@ class MainGUI:
         root.geometry("500x200")
         menubar = Menu(root)
         Options = Menu(menubar, tearoff=0)
-        Options.add_command(label="Points", command=PointsGUI)
-        Options.add_command(label="Steals", command=StealsGUI)
+        Options.add_command(label="Points", command=pointsGUI)
+        Options.add_command(label="Steals", command=stealsGUI)
+        Options.add_command(label="Rebounds", command=reboundsGUI)
         Options.add_command(label="Exit", command=root.quit)
         menubar.add_cascade(label="Options", menu=Options)
         root.config(menu=menubar)
