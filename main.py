@@ -181,6 +181,53 @@ class reboundsGUI:
         t = reboundsTable(root)
         root.mainloop()
 
+# Fouls
+class foulssTableList:
+    PG = Player("Skyler","PG",1,2,1)
+    SG = Player("Zane","SG",1,3,2)
+    C = Player("David","C",1,1,2)
+    PF = Player("Carson","PF",1,0,2)
+    SF = Player("Ethan","SF",1,0,0)
+    def returnList():
+        Game1 = functions.returnGame1Points(foulssTableList.PG.returnGame1(),foulssTableList.SG.returnGame1(),foulssTableList.C.returnGame1(),foulssTableList.PF.returnGame1(),foulssTableList.SF.returnGame1())
+        Game2 = functions.returnGame2Points(foulssTableList.PG.returnGame2(),foulssTableList.SG.returnGame2(),foulssTableList.C.returnGame2(),foulssTableList.PF.returnGame2(),foulssTableList.SF.returnGame2())
+        Game3 = functions.returnGame3Points(foulssTableList.PG.returnGame3(),foulssTableList.SG.returnGame3(),foulssTableList.C.returnGame3(),foulssTableList.PF.returnGame3(),foulssTableList.SF.returnGame3())
+        Total = functions.returnAllPoints(foulssTableList.PG.returnPoints(),foulssTableList.SG.returnPoints(),foulssTableList.C.returnPoints(),foulssTableList.PF.returnPoints(),foulssTableList.SF.returnPoints())
+        AVG = functions.returnAvg(Total)
+        list = [("Name:","POS:","Game 1:","Game 2:","Game 3:","Total Fouls:"),
+                (foulssTableList.PG.returnName(),foulssTableList.PG.returnPos(),foulssTableList.PG.returnGame1(),foulssTableList.PG.returnGame2(),foulssTableList.PG.returnGame3(),foulssTableList.PG.returnPoints()),
+                (foulssTableList.SG.returnName(),foulssTableList.SG.returnPos(),foulssTableList.SG.returnGame1(),foulssTableList.SG.returnGame2(),foulssTableList.SG.returnGame3(),foulssTableList.SG.returnPoints()),
+                (foulssTableList.C.returnName(),foulssTableList.C.returnPos(),foulssTableList.C.returnGame1(),foulssTableList.C.returnGame2(),foulssTableList.C.returnGame3(),foulssTableList.C.returnPoints()),
+                (foulssTableList.PF.returnName(),foulssTableList.PF.returnPos(),foulssTableList.PF.returnGame1(),foulssTableList.PF.returnGame2(),foulssTableList.PF.returnGame3(),foulssTableList.PF.returnPoints()),
+                (foulssTableList.SF.returnName(),foulssTableList.SF.returnPos(),foulssTableList.SF.returnGame1(),foulssTableList.SF.returnGame2(),foulssTableList.SF.returnGame3(),foulssTableList.SF.returnPoints()),
+                ("","Totals:",Game1,Game2,Game3,Total),
+                ("","AVG:","","","",AVG),
+                ]
+        return list
+ 
+class foulsTable:
+    def __init__(self,root):
+        # code for creating table
+        fontColor = "blue"
+        for i in range(foulsGUI.total_rows):
+            for j in range(foulsGUI.total_columns):
+                  
+                self.e = Entry(root, width=15, fg=fontColor,
+                               font=('Arial',16,'bold'))
+                  
+                self.e.grid(row=i, column=j)
+                self.e.insert(END, foulsGUI.lst[i][j])
+
+class foulsGUI:
+    lst = foulssTableList.returnList()
+    total_rows = len(lst)
+    total_columns = len(lst[0])
+    def __init__(self):
+        root = Tk()
+        root.title("Fouls By Starting Players")
+        t = foulsTable(root)
+        root.mainloop()
+
 # Main GUI
 class MainGUI:
     def __init__(self):
@@ -192,8 +239,11 @@ class MainGUI:
         Options.add_command(label="Points", command=pointsGUI)
         Options.add_command(label="Steals", command=stealsGUI)
         Options.add_command(label="Rebounds", command=reboundsGUI)
+        Options.add_command(label="Fouls", command=foulsGUI)
         Options.add_command(label="Exit", command=root.quit)
         menubar.add_cascade(label="Options", menu=Options)
         root.config(menu=menubar)
         root.mainloop()
+
+# Program
 MainGUI()
